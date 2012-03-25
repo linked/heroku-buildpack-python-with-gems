@@ -172,6 +172,9 @@ fi
 puts-step "Installing dependencies using Pip version $(pip --version | awk '{print $2}')"
 pip install --use-mirrors -r requirements.txt --src ./.heroku/src | indent
 
+# Install Gems
+bundle install --without development:test --path .gems --binstubs bin/ --deployment
+
 # Do additional application hackery if applications appears to be a Django app.
 # Optionally, disable all Django-specific changes with `DISABLE_INJECTION` env.
 # 
